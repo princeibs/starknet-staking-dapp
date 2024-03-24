@@ -1,0 +1,44 @@
+name: Deploy Cairo Smart Contracts to Sepolia Testnet
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Cairo Contracts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Install Starknet Foundry CLI
+        run: |
+          npm install -g @starknet/forge-cli
+      
+      - name: Build Cairo Contracts
+        run: |
+          # Replace this command with your build command for Cairo contracts
+          echo "Build Cairo contracts"
+      
+      - name: Deploy Cairo Contracts to Sepolia Testnet
+        run: |
+          # Replace 'path/to/your/contract' with the correct path to your Cairo contracts
+          forge deploy path/to/your/contract --network sepolia-testnet
+      
+      - name: Save Deployed Address to Wiki
+        if: success()
+        run: |
+          # Replace 'deployed_address' with the correct variable holding the deployed contract address
+          echo "::set-env name=DEPLOYED_ADDRESS::$deployed_address"
+          echo "Deployed Address: $deployed_address" > deployed_address.txt
+          echo "Deployed Address: $deployed_address" > $GITHUB_WORKSPACE/deployed_address.txt
+        # Commit and push the updated wiki page
+        - name: Commit Wiki Update
+          run: |
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Actions"
+            git add deployed_address.txt
+            git commit -m "Update deployed contract address"
+            git push origin main

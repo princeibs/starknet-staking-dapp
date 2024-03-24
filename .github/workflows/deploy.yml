@@ -27,6 +27,11 @@ jobs:
           /home/runner/.config/.starkli/bin/starkliup --version 0.1.20
           sudo mv /home/runner/.config/.starkli/bin/starkli /usr/local/bin/
 
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo "${{ secrets.ENV }}" > .env
+
       - name: Deploy contracts
         run: |
           ./auto-deploy.sh

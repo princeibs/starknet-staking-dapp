@@ -1,8 +1,9 @@
 #!/bin/bash
 # source ./.env
 
-# export STARKNET_KEYSTORE=$STARKNET_KEYSTORE
-# export STARKNET_ACCOUNT=$STARKNET_ACCOUNT
+export STARKNET_KEYSTORE=./account/sn_ks.json
+export STARKNET_ACCOUNT=./account/sn_acc.json
+export KEYSTORE_ACCESS=12345678
 
 SIERRA_FILE=./target/dev/basic_staking_dapp_BWCStakingContract.contract_class.json
 TOKEN_1=0x3ae4482d3273f1e8117335b2985154c4b014e28028c2427ba67452756b61b85
@@ -25,7 +26,7 @@ declare_contract() {
     build_contract
 
     echo "Running declare command..."
-    output=$(starkli declare $SIERRA_FILE --keystore-password $KEYSTORE_PASSWORD --watch 2>&1)
+    output=$(starkli declare $SIERRA_FILE --keystore-password $KEYSTORE_ACCESS --watch 2>&1)
 
     if [[ $output == *"Error"* ]]; then
         echo "Error: $output"
@@ -42,7 +43,7 @@ deploy_contract() {
     sleep 5
 
     echo "Running deploy command..."
-    output=$(starkli deploy $class_hash "$TOKEN_1" "$TOKEN_2" "$TOKEN_3" --keystore-password $KEYSTORE_PASSWORD --watch 2>&1)
+    output=$(starkli deploy $class_hash "$TOKEN_1" "$TOKEN_2" "$TOKEN_3" --keystore-password $KEYSTORE_ACCESS --watch 2>&1)
 
     echo $output
     if [[ $output == *"Error"* ]]; then

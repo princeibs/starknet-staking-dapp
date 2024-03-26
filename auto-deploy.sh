@@ -44,8 +44,6 @@ deploy_contract() {
     echo "Running deploy command..."
     output=$(starkli deploy $class_hash "$TOKEN_1" "$TOKEN_2" "$TOKEN_3" --keystore-password $KEYSTORE_PASSWORD --watch 2>&1)
 
-    echo "$output"
-
     if [[ $output == *"Error"* ]]; then
         echo "Error: $output"
         exit 1

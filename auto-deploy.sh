@@ -1,8 +1,8 @@
 #!/bin/bash
-source ./.env
+# source ./.env
 
-export STARKNET_KEYSTORE=$STARKNET_KEYSTORE
-export STARKNET_ACCOUNT=$STARKNET_ACCOUNT
+# export STARKNET_KEYSTORE=$STARKNET_KEYSTORE
+# export STARKNET_ACCOUNT=$STARKNET_ACCOUNT
 
 SIERRA_FILE=./target/dev/basic_staking_dapp_BWCStakingContract.contract_class.json
 TOKEN_1=0x3ae4482d3273f1e8117335b2985154c4b014e28028c2427ba67452756b61b85

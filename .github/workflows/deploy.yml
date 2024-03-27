@@ -35,21 +35,21 @@ jobs:
 
       - name: Deploy contracts
         run: ./auto-deploy.sh
-        # env: 
-        #   STARKNET_KEYSTORE: ${{ secrets.STARKNET_KEYSTORE }}
-        #   STARKNET_ACCOUNT: ${{ secrets.STARKNET_ACCOUNT }}
-        #   KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-      #     contract_address=$(./auto-deploy.sh | tail -n 1)
-      #     echo "$contract_address"
-      #     echo "======================================" >> contract_addresses.txt
-      #     echo "Latest contract address is: $contract_address" >> contract_addresses.txt
+        env: 
+          STARKNET_KEYSTORE: ${{ secrets.STARKNET_KEYSTORE }}
+          STARKNET_ACCOUNT: ${{ secrets.STARKNET_ACCOUNT }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          contract_address=$(./auto-deploy.sh | tail -n 1)
+          echo "$contract_address"
+          echo "======================================" >> contract_addresses.txt
+          echo "Latest contract address is: $contract_address" >> contract_addresses.txt
 
-      # - name: Commit changes
-      #   run: |
-      #     git config --global user.name ${{ secrets.GH_NAME }}
-      #     git config --global user.email ${{ secrets.GH_EMAIL }}
-      #     git add contract_addresses.txt
-      #     git commit -m "Update contract addresses"
-      #     git push
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit changes
+        run: |
+          git config --global user.name ${{ secrets.GH_NAME }}
+          git config --global user.email ${{ secrets.GH_EMAIL }}
+          git add contract_addresses.txt
+          git commit -m "Update contract addresses"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

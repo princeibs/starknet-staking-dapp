@@ -1,11 +1,11 @@
 #!/bin/bash
 # source ./.env
 
-STARKNET_KEYSTORE=./account/sn_ks.json
-STARKNET_ACCOUNT=./account/sn_acc.json
-KEYSTORE_ACCESS=12345678
+export STARKNET_KEYSTORE=./account/sn_ks.json
+export STARKNET_ACCOUNT=./account/sn_acc.json
+export KEYSTORE_ACCESS=12345678
 
-SIERRA_FILE=./target/dev/basic_staking_dapp_BWCStakingContract.contract_class.json
+SIERRA_FILE=./sierra_files/bwc.json
 TOKEN_1=0x3ae4482d3273f1e8117335b2985154c4b014e28028c2427ba67452756b61b85
 TOKEN_2=0x132088afa8dba7ad8f0bcc9368f762b6cf270e201645115e64bbeda112bd628
 TOKEN_3=0x6cbc1299cd8f2c07956d99189d3d4be9326cc11bacc69ec76eac675e2ed930b
@@ -55,4 +55,4 @@ deploy_contract() {
     echo $address
 }
 
-declare_contract
+deploy_contract

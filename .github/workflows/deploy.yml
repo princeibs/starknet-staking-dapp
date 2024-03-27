@@ -34,11 +34,7 @@ jobs:
           echo ${{ secrets.ENV }} > .env
 
       - name: Deploy contracts
-        run: ./auto-deploy.sh
-        env: 
-          STARKNET_KEYSTORE: ${{ secrets.STARKNET_KEYSTORE }}
-          STARKNET_ACCOUNT: ${{ secrets.STARKNET_ACCOUNT }}
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: |
           contract_address=$(./auto-deploy.sh | tail -n 1)
           echo "$contract_address"
           echo "======================================" >> contract_addresses.txt

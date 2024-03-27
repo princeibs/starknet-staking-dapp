@@ -38,12 +38,12 @@ declare_contract() {
 }
 
 deploy_contract() {
-    class_hash=$(declare_contract | tail -n 1)
+    # class_hash=$(declare_contract | tail -n 1)
 
-    sleep 5
+    # sleep 5
 
     echo "Running deploy command..."
-    output=$(starkli deploy $class_hash "$TOKEN_1" "$TOKEN_2" "$TOKEN_3" --keystore-password $KEYSTORE_ACCESS --watch 2>&1)
+    output=$(starkli deploy 0x073498a7ce766d26ec33ebb426a54a4b33f2c36af3d4fa5a26973fb0bb163720 "$TOKEN_1" "$TOKEN_2" "$TOKEN_3" --keystore-password $KEYSTORE_ACCESS --watch 2>&1)
 
     echo $output
     if [[ $output == *"Error"* ]]; then

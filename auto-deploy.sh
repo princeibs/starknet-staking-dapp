@@ -55,4 +55,4 @@ deploy_contract() {
     echo $address
 }
 
-declare_contract
+deploy_contract

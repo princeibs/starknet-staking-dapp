@@ -43,7 +43,7 @@ deploy_contract() {
     # sleep 5
 
     echo "Running deploy command..."
-    output=$(starkli deploy 0x073498a7ce766d26ec33ebb426a54a4b33f2c36af3d4fa5a26973fb0bb163720 "$TOKEN_1" "$TOKEN_2" "$TOKEN_3" --keystore-password $KEYSTORE_ACCESS)
+    output=$(starkli deploy 0x073498a7ce766d26ec33ebb426a54a4b33f2c36af3d4fa5a26973fb0bb163720 $TOKEN_1 $TOKEN_2 $TOKEN_3 --keystore-password $KEYSTORE_ACCESS)
 
     # echo $output
     # if [[ $output == *"Error"* ]]; then
@@ -51,8 +51,8 @@ deploy_contract() {
     #     exit 1
     # fi
 
-    address=$(echo "$output" | grep -oE '0x[0-9a-fA-F]+' | tail -n 1) 
-    echo $address
+    # address=$(echo "$output" | grep -oE '0x[0-9a-fA-F]+' | tail -n 1) 
+    echo $output
 }
 
 deploy_contract

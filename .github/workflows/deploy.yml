@@ -44,6 +44,7 @@ jobs:
         run: |
           git config --global user.name ${{ secrets.GH_NAME }}
           git config --global user.email ${{ secrets.GH_EMAIL }}
+          git pull
           git add contract_addresses.txt
           git commit -m "Update contract addresses"
           git push
